@@ -1,0 +1,11 @@
+body {
+    background: #fafafa;
+}
+.alert-light {
+    border-color: #bfbfbf;
+}
+
+footer {
+    width: 70%;
+    margin-left: 15%;
+}

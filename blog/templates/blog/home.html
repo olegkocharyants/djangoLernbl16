@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  {{ title}}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{title}}</h1>
+
+    {% for post in news %}
+        <div class="alert alert-light"
+            <h1>{{post.title}}</h1>
+            <p>{{ post.text }}</p>
+            <span class="text-multed">Публикация: {{post.date|date:"j F Y, время: H:i:s"}}</span>
+            {% if post.avtor %}
+                <p>Автор: {{ post.avtor }}</p>
+            {% else %}
+                <p><b>Автор: </b><mark>Админ</mark></p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block aside_block %}
+<h4 class="mt-2">Интересные статьи</h4>
+<img src="https://itproger.com/img/courses/x1699009370.jpg.pagespeed.ic.5VqA4q768o.webp"
+<p>Когда мы говорим про Питон, то здесь важно понимать один нюанс. Каждый у кого есть умение и желание может написать свою библиотеку для языка Питон. Из-за этой особенности и большого комьюнити программистов на сегодняшний день мы имеем ряд очень крутых и полноценных библиотек для построения программ на базе Питон. Сегодня вы можете строить как мобильные приложений, так и можно создавать компьютерные программы с красивым UI.</p>
+<a href="https://itproger.com/course/python-gui">
+  <button class="btn btn-warning">Посмотреть</button>
+</a>
+
+
+{% endblock %}
