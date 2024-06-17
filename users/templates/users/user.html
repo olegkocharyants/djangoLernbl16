@@ -1,22 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-  {{ title}}
+  Страница авторизации
 {% endblock %}
 
 {% block content %}
- 
-<h1>{{ title}}</h1>
-  <form method="post" class="form-register">
+<h1>Страница авторизации</h1>
+  <form method="post" class="form-register auth">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="brn btn-outline-warning" type="submit">Зарегистрироваться</button>
-    <hr>
-    <p>Уже зарегистрированы?<a href="{% url 'user' %}">Войти в личный кабинет</a></p>
-  </form>
+    <button class="brn btn-outline-warning" type="submit">Войти</button>
+ </form>
 
 {% endblock %}
-
 
 {% block aside_block %}
 <h4 class="mt-5">Уроки Java 3D Game</h4>

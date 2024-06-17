@@ -28,10 +28,31 @@
                 <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
               </li>
             </ul>
-          </div>
-          <a href="{% url 'reg' %}">
-            <button class="btn btn-outline-warning">Регистрация</button>
+
+
+            {% if not user.is_authenticated %}
+             
+            <a href="{% url 'reg' %}">
+              <button class="btn btn-outline-warning" style="width: 150px">Регистрация</button>
+            </a>
+          
+            <a href="{% url 'user' %}" class="ml-2">
+              <button class="btn btn-outline-info" style="width: 100px">Войти</button>
+            </a>
+          {% else %}
+         
+          <a href="{% url 'profile' %}">
+            <button class="btn btn-outline-warning" style="width: 150px">Профиль</button>
           </a>
+        
+          <form action="{% url 'exit' %}" class="ml-2" method="post">
+            {% csrf_token %}
+            <button class="btn btn-outline-info" style="width: 100px">Выйти</button>
+          </form>
+
+        {% endif %}
+          
+          </div>
         </div>
     </nav>
       
@@ -99,11 +120,5 @@
         </div>
       </div>
     </footer>    
-
-
-
-      
-
-    
 </body>
 </html>
