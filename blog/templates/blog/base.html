@@ -40,8 +40,12 @@
               <button class="btn btn-outline-info" style="width: 100px">Войти</button>
             </a>
           {% else %}
+
+          <a href="{% url 'news-add' %}">
+            <button class="btn btn-outline-secondary" style="width: 150px">Добавить стать</button>
+          </a>
          
-          <a href="{% url 'profile' %}">
+          <a href="{% url 'profile' %}" class="ml-2">
             <button class="btn btn-outline-warning" style="width: 150px">Профиль</button>
           </a>
         

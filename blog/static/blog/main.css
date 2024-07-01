@@ -6,6 +6,15 @@ body {
   border-color: #bfbfbf;
 }
 
+.user_images {
+  width: 64px;
+  height: 64px;
+  border-radius: 20%;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+
 .form-register {
   padding: 20px;
   background: #fafafa;
@@ -20,7 +29,7 @@ body {
     font-weight: bold;
 }
 
-.form-register.auth input {
+.form-register.auth input, .form-register.auth textarea {
   display: block;
   width: 96%;
   margin-top: 5px;

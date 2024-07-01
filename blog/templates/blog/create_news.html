@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+ 
+<h1>{{ title }}</h1>
+  <form method="post" class="form-register auth">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="brn btn-outline-warning" type="submit">{{ btn_text }}</button>
+  </form>
+
+{% endblock %}
+
+
+{% block aside_block %}
+<h4 class="mt-5">Уроки Java 3D Game</h4>
+<img src="https://itproger.com/img/courses/x1715445829.jpg.pagespeed.ic.i275U3LWJb.webp"
+<p>Представляем курс по разработке 3Д игры на Джава. За курс вы создадите популярную игру Minecraft на Java без использования игровых движков. Игра будет содержать базовые концепции и будет выполнена в формате 3Д графики.</p>
+<a href="https://itproger.com/course/java-minecraft">
+  <button class="btn btn-warning">Посмотреть</button>
+</a>
+{% endblock %}

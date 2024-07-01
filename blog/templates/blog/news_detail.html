@@ -6,24 +6,25 @@
 
 {% block content %}
 
-    {% for post in news %}
         <div class="alert alert-light"
-            <h1>{{ post.title }}</h1>
-            <p>{{ post.text }}</p>
+            <h1>{{object.title}}</h1>
+            <p>{{ object.text }}</p>
             <div class="row">
                 <div>
-                    <img src="{{ post.avtor.profile.img.url}} " alt="{{ post.avtor }}" class="user_images">
+                    <img src="{{ object.avtor.profile.img.url}} " alt="{{ object.avtor }}" class="user_images">
                 </div >
                 <div class="mt-2">
-                    <span class="text-multed">Публикация: {{post.date|date:"d F Yг, в H:i"}}</span>
-                    <p><b>Автор: </b><mark>{{ post.avtor }}</mark></p>
+                    <span class="text-multed">Публикация: {{object.date|date:"d F Yг, в H:i"}}</span>
+                    <p><b>Автор: </b><mark>{{ object.avtor }}</mark></p>
                 </div> 
-            </div>  
-            
-           <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning mt-3">Читать далее</a>
-
+            </div>       
         </div>
-    {% endfor %}
+        {% if object.avtor == user %}
+        <hr>
+          <a href="{% url 'news-update' object.id %}" class="btn btn-info">Обновить статью</a>
+          <a href="{% url 'news-delete' object.id %}" class="btn btn-danger">Удалить статью</a>
+       {% endif %}
+    </div>
 
 {% endblock %}
 

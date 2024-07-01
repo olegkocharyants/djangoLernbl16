@@ -1,14 +1,15 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile
 from django.contrib.auth.forms import UserCreationForm
+
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
         label='Введите login', 
         required=True, 
         help_text='Нельзя вводить символы: @, /, _',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите login'}
-        )
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите login'})
         )
     # some = forms.ModelChoiceField(queryset=User.objects.all())
     password1 = forms.CharField(
@@ -32,14 +33,34 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'password1', 'password2', 'email']
 
 
-# from django.contrib.auth.forms import UserCreationForm
+class UserUpdateForm(forms.ModelForm):
+    username = forms.CharField(
+            label='Введите Логин', 
+            required=True, 
+            help_text='Нельзя вводить символы: @, /, _',
+            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите login'})
+            )
+    email = forms.EmailField(
+            label='Введите Email', 
+            required=True,
+            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите Email'})
+            )
+   
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
 
-# class UserRegisterForm(forms.Form):
-# class UserRegisterForm(UserCreationForm):
-#     email = forms.EmailField(label='Введите email', required=True)
+class ProfileImageForm(forms.ModelForm):
+    img = forms.ImageField(
+        label='Загрузить фото',
+        required=False,
+        widget=forms.FileInput
+    )
 
-#     class Meta:
-#         model = User
-#         fields = ['username', 'password1', 'password2', 'email']
+    class Meta:
+        model = Profile
+        fields = ['img']
 
-    

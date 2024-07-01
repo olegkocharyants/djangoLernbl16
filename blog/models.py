@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 class News(models.Model):
@@ -14,11 +15,14 @@ class News(models.Model):
     #     ('S', 'Small'),
     #     ('M', 'Medium'),
     #     ('L', 'Large'),
-    #     ('XL', 'X Large'),
+    #     ('XL', 'X large'),
     # )
+    #
+    # shop_sizes = models.CharField(max_length=2, choices=sizes, default='S')
 
-    # shop_sizes = models.CharField('Размер', max_length=2, choices=sizes, default='S')
-
+    def get_absolute_url(self):
+        return reverse('news-detail', kwargs={'pk': self.pk})
+    
 
     def __str__(self):
         return f'{self.title}'
