@@ -1,5 +1,8 @@
+# from typing import Any
 from typing import Any
-from django.shortcuts import render
+from django.db.models.query import QuerySet
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from .models import News
 from django.views.generic import (
     ListView,
@@ -16,12 +19,31 @@ class ShowNewsView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'news'
     ordering = ['-date']
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         ctx = super(ShowNewsView, self).get_context_data(**kwargs)
 
         ctx['title'] = 'Главная страница сайта'
         return ctx
+
+class UserAllNewsView(ListView):
+    model = News
+    template_name = 'blog/user_news.html'
+    context_object_name = 'news'
+    paginate_by = 2
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return News.objects.filter(avtor=user).order_by('-date')
+        
+
+    def get_context_data(self, **kwargs):
+        ctx = super(UserAllNewsView, self).get_context_data(**kwargs)
+
+        ctx['title'] = f"Статьи от пользователя {self.kwargs.get('username')}"
+        return ctx
+
 
 class NewsDetailView(DetailView):
     model = News
